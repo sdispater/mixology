@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "mixology"
+version = "0.1.0"
+description = "A generic dependency-resolution algorithm written in pure Python."
+authors = [
+    "Sébastien Eustace <sebastien@eustace.io>"
+]
+
+homepage = "https://github.com/sdispater/mixology"
+repository = "https://github.com/sdispater/mixology"
+
+license = "MIT"
+readme = "README.md"
+keywords = ["dependency-resolution"]
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = "~2.7 || ^3.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.5"
+semantic-version = "^2.6"
