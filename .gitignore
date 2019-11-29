@@ -28,4 +28,4 @@ setup.cfg
 MANIFEST.in
 setup.py
 /docs/site/*
-pyproject.lock
+poetry.lock
