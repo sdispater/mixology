@@ -1,42 +1,9 @@
-# Mixology
+from typing import Any
+from typing import Dict
+from typing import Hashable
+from typing import List
+from typing import Optional
 
-A generic dependency-resolution library in pure Python.
-It is based on the [PubGrub](https://github.com/dart-lang/pub/blob/master/doc/solver.md)
-
-
-## Installation
-
-If you are using [poetry](https://github.com/sdispater/poetry), it's as simple as:
-
-```bash
-poetry add mixology
-```
-
-If not you can use `pip`:
-
-```bash
-pip install mixology
-```
-
-## Usage
-
-Mixology is a dependency resolution algorithm.
-
-In order to start using Mixology you need to initialize a [`VersionSolver`](tree/master/mixology/version_solver.py) instance
-with a [`PackageSource`](tree/master/mixology/package_source.py) which should be adapted to work with your system.
-
-Then, you need to call `VersionSolver.solve()` which will return a [result](tree/master/mixology/result.py) with the list of decisions
-or raise a [`SolveFailure`](tree/master/mixology/failure.py) which will give a detailed explanation of the reason why the resolution failed.
-
-## Example
-
-This example is extracted from the test suite of Mixology
-and uses the [`poetry-semver`](https://github.com/python-poetry/semver) library.
-
-First we need to have our own `PackageSource` class which implements the required methods
-and a simple `Dependency` class. Packages will be represented by simple strings.
-
-```python
 from semver import Version
 from semver import VersionRange
 from semver import parse_constraint
@@ -48,7 +15,6 @@ from mixology.union import Union
 
 
 class Dependency:
-
     def __init__(self, name, constraint):  # type: (str, str) -> None
         self.name = name
         self.constraint = parse_constraint(constraint)
@@ -59,7 +25,6 @@ class Dependency:
 
 
 class PackageSource(BasePackageSource):
-
     def __init__(self):  # type: () -> None
         self._root_version = Version.parse("0.0.0")
         self._root_dependencies = []
@@ -138,72 +103,3 @@ class PackageSource(BasePackageSource):
             constraint = Union.of(ranges)
 
         return Constraint(dependency.name, constraint)
-```
-
-Now, we need to specify our root dependencies and the available packages.
-
-```python
-source = PackageSource()
-
-source.root_dep("a", "1.0.0")
-source.root_dep("b", "1.0.0")
-
-source.add("a", "1.0.0", deps={"shared": ">=2.0.0 <4.0.0"})
-source.add("b", "1.0.0", deps={"shared": ">=3.0.0 <5.0.0"})
-source.add("shared", "2.0.0")
-source.add("shared", "3.0.0")
-source.add("shared", "3.6.9")
-source.add("shared", "4.0.0")
-source.add("shared", "5.0.0")
-```
-
-Now that everything is in place we can create a `VersionSolver` instance
-with the newly created `PackageSource` and call `solve()` to retrieve a `SolverResult` instance.
-
-```python
-from mixology.version_solver import VersionSolver
-
-solver = VersionSolver(source)
-result = solver.solve()
-result.decisions
-# {Package("_root_"): '0.0.0', 'b': <Version 1.0.0>, 'a': <Version 1.0.0>, 'shared': <Version 3.6.9>}
-result.attempted_solutions
-# 1
-```
-
-
-## Contributing
-
-To work on the Mixology codebase, you'll want to fork the project, clone the fork locally
-and install the required dependencies via `poetry <https://poetry.eustace.io>`_.
-
-```bash
-git clone git@github.com:sdispater/mixology.git
-poetry install
-```
-
-Then, create your feature branch:
-
-```bash
-git checkout -b my-new-feature
-```
-
-Make your modifications, add tests accordingly and execute the test suite:
-
-```bash
-poetry run pytest tests/
-```
-
-When you are ready, commit your changes:
-
-```bash
-git commit -am 'Add new feature'
-```
-
-push your branch:
-
-```bash
-git push origin my-new-feature
-```
-
-and finally create a pull request.
