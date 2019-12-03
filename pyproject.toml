@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mixology"
 version = "0.2.0"
-description = "A generic dependency-resolution algorithm written in pure Python."
+description = "A generic dependency-resolution library written in pure Python"
 authors = [
     "Sébastien Eustace <sebastien@eustace.io>"
 ]

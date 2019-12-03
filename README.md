@@ -1,6 +1,6 @@
 # Mixology
 
-A generic dependency-resolution library in pure Python.
+A generic dependency-resolution library written in pure Python.
 It is based on the [PubGrub](https://github.com/dart-lang/pub/blob/master/doc/solver.md) algorithm.
 
 
