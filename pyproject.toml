@@ -28,7 +28,7 @@ enum34 = { version = "^1.1", python = "~2.7" }
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"
 pytest-cov = "^2.8.1"
-poetry-semver = {path = "../../poetry/semver"}
+poetry-semver = "^0.1.0"
 tox = "^3.12"
 pre-commit = "^1.10"
 
