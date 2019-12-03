@@ -1,7 +1,7 @@
 # Mixology
 
 A generic dependency-resolution library in pure Python.
-It is based on the [PubGrub](https://github.com/dart-lang/pub/blob/master/doc/solver.md)
+It is based on the [PubGrub](https://github.com/dart-lang/pub/blob/master/doc/solver.md) algorithm.
 
 
 ## Installation
@@ -22,11 +22,11 @@ pip install mixology
 
 Mixology is a dependency resolution algorithm.
 
-In order to start using Mixology you need to initialize a [`VersionSolver`](tree/master/mixology/version_solver.py) instance
-with a [`PackageSource`](tree/master/mixology/package_source.py) which should be adapted to work with your system.
+In order to start using Mixology you need to initialize a [`VersionSolver`](mixology/version_solver.py) instance
+with a [`PackageSource`](mixology/package_source.py) which should be adapted to work with your system.
 
-Then, you need to call `VersionSolver.solve()` which will return a [result](tree/master/mixology/result.py) with the list of decisions
-or raise a [`SolveFailure`](tree/master/mixology/failure.py) which will give a detailed explanation of the reason why the resolution failed.
+Then, you need to call `VersionSolver.solve()` which will return a [result](mixology/result.py) with the list of decisions
+or raise a [`SolveFailure`](mixology/failure.py) which will give a detailed explanation of the reason why the resolution failed.
 
 ## Example
 
