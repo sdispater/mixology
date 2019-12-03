@@ -34,7 +34,7 @@ class PackageSource(BasePackageSource):
 
     @property
     def root_version(self):
-        return "0.0.0"
+        return self._root_version
 
     def add(
         self, name, version, deps=None

@@ -69,7 +69,7 @@ class PackageSource(BasePackageSource):
 
     @property
     def root_version(self):
-        return "0.0.0"
+        return self._root_version
 
     def add(
         self, name, version, deps=None
@@ -166,7 +166,7 @@ from mixology.version_solver import VersionSolver
 solver = VersionSolver(source)
 result = solver.solve()
 result.decisions
-# {Package("_root_"): '0.0.0', 'b': <Version 1.0.0>, 'a': <Version 1.0.0>, 'shared': <Version 3.6.9>}
+# {Package("_root_"): <Version 0.0.0>, 'b': <Version 1.0.0>, 'a': <Version 1.0.0>, 'shared': <Version 3.6.9>}
 result.attempted_solutions
 # 1
 ```
